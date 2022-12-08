@@ -1,0 +1,4 @@
+1. First Enter Base Url in Appurl
+2. Make Function of APi on Auth Repositry
+3. Make Provider of Function in AuthViewViewModel
+4. Then initialize in dartFile
