@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mvvmstructure/Model/userModel.dart';
 import 'package:mvvmstructure/utils/utility.dart';
+import 'package:mvvmstructure/view_model/user_view_model.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/routes/route_name.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,12 +15,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
+  final sharedPreferences=Provider.of<UserViewModel>(context);
+
     return Scaffold(
-      backgroundColor: Colors.black,
+   
       appBar: AppBar(
         title:const Text("Home Screen"),
+        actions: [
+          ElevatedButton(onPressed: () {
+              
+                sharedPreferences.remove();
+                Utils.flushbarErrorMessage( "LogOut",context);
+                Navigator.pushNamedAndRemoveUntil(
+            context, RoutesName.login, (route) => false);
+
+              }, child: const Icon(Icons.logout_outlined),),
+        ],
         elevation: 0,
        
       ), body: SafeArea(
@@ -23,11 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
-              child: ElevatedButton(onPressed: () {
-                //Utils.toastMessage("message");
-                Utils.flushbarErrorMessage( "message",context);
-
-              }, child: const Text("Click ME"),),
+              child: Text("ello")
             ),
           ],
         ),

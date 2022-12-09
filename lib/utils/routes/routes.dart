@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvmstructure/Views/SignUp.dart';
+import 'package:mvvmstructure/Views/Splash_view.dart';
 import 'package:mvvmstructure/Views/homeScreen.dart';
 import 'package:mvvmstructure/Views/login.dart';
 import 'package:mvvmstructure/utils/routes/route_name.dart';
@@ -7,6 +8,10 @@ import 'package:mvvmstructure/utils/routes/route_name.dart';
 class Routes {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
+      case RoutesName.splashScreen:
+        return MaterialPageRoute(
+          builder: (context) => const SplashScreen(),
+        );
       case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => const HomeScreen(),
