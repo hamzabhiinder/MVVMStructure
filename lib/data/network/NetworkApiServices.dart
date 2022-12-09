@@ -45,9 +45,9 @@ class NetworkApiService extends BaseApiServices {
         return responseJson;
 
       case 400:
-        throw BadRequestException();
+        throw BadRequestException(response.body);
       case 404:
-        throw UnauthorizedException();
+        throw UnauthorizedException(response.body);
 
       default:
         throw FetchDataException(

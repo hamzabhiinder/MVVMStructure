@@ -5,12 +5,12 @@ class AuthException implements Exception {
   AuthException([this._message, this._prefix]);
   @override
   String toString() {
-    return '$_prefix $_message';
+    return '$_prefix$_message';
   }
 }
 
 class FetchDataException extends AuthException {
-  FetchDataException([String? message]): super(message, 'Error During Coomunication');
+  FetchDataException([String? message]): super(message, 'Error During Communication');
 }
 
 class BadRequestException extends AuthException {
@@ -24,3 +24,7 @@ class UnauthorizedException extends AuthException {
 class InvalidInputException extends AuthException {
   InvalidInputException([String? message]): super(message, 'Invalid Input!');
 }
+
+
+
+

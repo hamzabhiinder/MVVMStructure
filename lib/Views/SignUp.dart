@@ -2,21 +2,21 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mvvmstructure/res/component/round_button.dart';
+import 'package:mvvmstructure/utils/routes/route_name.dart';
 import 'package:mvvmstructure/utils/utilities/dialog/error_dialog.dart';
 import 'package:mvvmstructure/view_model/authViewModel.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/routes/route_name.dart';
 import '../utils/utility.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ValueNotifier<bool> obsecurePassword = ValueNotifier<bool>(true);
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
     final authViewModelProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Screen"),
+        title: const Text("SignUp Screen"),
         elevation: 0,
       ),
       body: SafeArea(
@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 10),
             RoundButton(
-                tilte: "Login",
+                tilte: "SignUp",
                 isLoading: authViewModelProvider.loading,
                 onPressed: () {
                   if (emailController.text.isEmpty) {
@@ -106,24 +106,19 @@ class _LoginState extends State<Login> {
                     ShowErrorDialog(context, "Please Enter 6 digit password");
                   } else {
                     Map data = {
-                      // "email":emailController.text,
-                      // "password":passwordController.text
-
-                      "email": "eve.holt@reqres.in",
-                      "password": "Qwerty1234\$"
+                      "email":emailController.text,
+                      "password":passwordController.text
                     };
-                    log("Api Hit");
-                    authViewModelProvider.login(data, context);
+                    authViewModelProvider.signUp(data, context);
                   }
                 }),
             const SizedBox(height: 10),
             InkWell(
               onTap: () {
-                Navigator.pushNamedAndRemoveUntil(context, RoutesName.signUp, (route) => false);
-
+                Navigator.pushNamedAndRemoveUntil(context, RoutesName.login, (route) => false);
               },
               child: const Center(
-                child: Text("Don't have Account? Signup"),
+                child: Text("Already have account? Login"),
               ),
             ),
           ],
