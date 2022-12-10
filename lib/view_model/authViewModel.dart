@@ -4,9 +4,12 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mvvmstructure/Model/userModel.dart';
 import 'package:mvvmstructure/repository/AuthRepository/auth_repository.dart';
 import 'package:mvvmstructure/utils/routes/route_name.dart';
 import 'package:mvvmstructure/utils/utility.dart';
+import 'package:mvvmstructure/view_model/user_view_model.dart';
+import 'package:provider/provider.dart';
 
 class AuthViewModel with ChangeNotifier {
   final myRepo = AuthRepository();
@@ -28,6 +31,10 @@ class AuthViewModel with ChangeNotifier {
     setLoading(true);
     myRepo.login(data).then((value) {
       setLoading(false);
+      final userPrefrences=Provider.of<UserViewViewModel>(context,listen: false);  //////Store the SharedPRefrences Value
+      userPrefrences.saveUser(
+          UserModel(token: value['token']),
+      );
       Utils.flushbarErrorMessage("Login Successfully", context);
       Navigator.pushNamedAndRemoveUntil(context, RoutesName.home ,(route) => false);
 

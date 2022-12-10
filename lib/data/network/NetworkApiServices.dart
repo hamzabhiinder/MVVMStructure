@@ -38,6 +38,21 @@ class NetworkApiService extends BaseApiServices {
 
   }
 
+   @override
+  Future getGetApiResponseWithList(String url) async{
+    List< dynamic >responseJson;
+    try {
+      final response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 15));
+
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException("No Internet Exception");
+    }
+    return responseJson;
+  }
+  
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
@@ -54,4 +69,7 @@ class NetworkApiService extends BaseApiServices {
             "Error Occured While Communicating with Server with Status Code ${response.statusCode}");
     }
   }
+  
+ 
+ 
 }
