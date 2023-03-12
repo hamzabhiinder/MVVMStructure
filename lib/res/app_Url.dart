@@ -10,6 +10,7 @@ class AppUrl {
 
   static var diseaseUrl="https://disease.sh/v3/covid-19/countries";
 
+  static const String updateProfile= "https://multivendor.coderouting.com/UserProfileGetById/419";
 
 
 }

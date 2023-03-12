@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvmstructure/Views/category.dart';
 import 'package:mvvmstructure/utils/routes/route_name.dart';
 import 'package:mvvmstructure/utils/routes/routes.dart';
 import 'package:mvvmstructure/view_model/authViewModel.dart';
@@ -26,8 +27,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.deepPurple,
         ),
-        initialRoute: RoutesName.splashScreen,
-        onGenerateRoute: Routes.generateRoutes,
+        home: CategoryScreen(),
+        // initialRoute: RoutesName.splashScreen,
+        // onGenerateRoute: Routes.generateRoutes,
       ),
     );
   }
